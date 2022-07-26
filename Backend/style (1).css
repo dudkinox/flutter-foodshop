@@ -1,0 +1,28 @@
+
+body, html {
+    height: 100%;
+    font-family: 'Mali', cursive !important;
+    font-size: 0.95rem !important;
+}
+.bg {
+    background: #56baed;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    clip-path: polygon(0 0, 55% 0, 45% 100%, 0% 100%);
+}
+.toggle.ios, .toggle-on.ios, .toggle-off.ios { 
+    border-radius: 20px; 
+    font-weight: 100px;
+}
+.toggle.ios .toggle-handle { 
+    border-radius: 20px; 
+}
+.toggle-on.btn {
+    padding-right: 19px;
+    font-weight: 100 !important;
+}
+.btn {
+    font-size: inherit !important;
+}
