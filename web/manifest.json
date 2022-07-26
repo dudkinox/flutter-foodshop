@@ -1,6 +1,6 @@
 {
-    "name": "joke_sam_kai",
-    "short_name": "joke_sam_kai",
+    "name": "food",
+    "short_name": "food",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
