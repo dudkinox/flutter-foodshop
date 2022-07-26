@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\2-2564\\Project 1\\Joke_sam_kai\\joke_sam_kai\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "/Users/sorener/Documents/GitHub/flutter-foodshop/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "D:\\2-2564\\Project 1\\Joke_sam_kai\\joke_sam_kai\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "/Users/sorener/Documents/GitHub/flutter-foodshop/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\2-2564\\Project 1\\Joke_sam_kai\\joke_sam_kai\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-kn\\values-kn.xml",
+            "outputFile": "/Users/sorener/Documents/GitHub/flutter-foodshop/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-kn/values-kn.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\TTX\\.gradle\\caches\\transforms-2\\files-2.1\\2e94107f30f39be366a17347c2bf100b\\core-1.1.0\\res\\values-kn\\values-kn.xml",
+                    "source": "/Users/sorener/.gradle/caches/transforms-3/251056c5b6401c0731b1748cade49bbc/transformed/core-1.6.0/res/values-kn/values-kn.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
