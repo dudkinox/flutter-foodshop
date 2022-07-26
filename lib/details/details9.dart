@@ -1,0 +1,413 @@
+import 'package:flutter/material.dart';
+
+import '../screen/steak.dart';
+
+class Details9 extends StatefulWidget {
+  @override
+  _Details9State createState() => _Details9State();
+}
+
+class _Details9State extends State<Details9> {
+  int number = 1;
+  bool CheckBoxValue = false;
+
+  // final formkey = GlobalKey<FormState>();
+  // Profile profile = Profile();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+            MaterialPageRoute route =
+                MaterialPageRoute(builder: (value) => SteakMenu());
+            Navigator.push(context, route);
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+        title: const Text('รายละเอียด', style: TextStyle(color: Colors.black)),
+      ),
+      body: SafeArea(
+        child: ListView(
+          children: <Widget>[
+            const SizedBox(
+              height: 50,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  "assets/images/steak.jpg",
+                  width: 200.0,
+                  height: 200.0,
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const <Widget>[
+                Text(
+                  'สเต็กเนื้อบาบีคิว',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
+                Text(
+                  'เนื้อ+เฟรนช์ฟรายส์+ขนมปัง+สลัด+ซอสบาบีคิว',
+                  style: TextStyle(
+                    fontSize: 15.0,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const <Widget>[
+                Text(
+                  'จำนวน',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Icon(
+                  Icons.arrow_left,
+                  size: 30,
+                ),
+                Text(
+                  number.toString(),
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                const Icon(
+                  Icons.arrow_right,
+                  size: 30,
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const <Widget>[
+                Text(
+                  'รายละเอียดเพิ่มเติม',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              width: 100,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const <Widget>[
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'รายละเอียดเพิ่มเติม',
+                  ),
+                  // obscureText: true,
+                  // decoration: InputDecoration(
+                  //   border: OutlineInputBorder(),
+                  //   labelText: 'รายละเอียดเพิ่มเติม',
+                  // ),
+                ),
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(170, 20, 0, 0),
+                  child: ElevatedButton(
+                    child: const Text("ยืนยัน",
+                        style: TextStyle(
+                            fontSize: 20, fontFamily: 'SpartanMB-Black')),
+                    onPressed: () {},
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(20, 20, 0, 0),
+                  child: ElevatedButton(
+                    child: const Text("ยกเลิก",
+                        style: TextStyle(
+                            fontSize: 20, fontFamily: 'SpartanMB-Black')),
+                    onPressed: () {},
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        setState(() {
+          number = number + 1;
+        });
+      }),
+    );
+  }
+}
+
+// import 'package:flutter/material.dart';
+
+// class Details9 extends StatefulWidget {
+//   @override
+//   _Details9State createState() => _Details9State();
+// }
+
+// class _Details9State extends State<Details9> {
+//   int number = 1;
+//   // final formkey = GlobalKey<FormState>();
+//   // Profile profile = Profile();
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         leading: IconButton(
+//           onPressed: () {}, 
+//           icon: Icon(Icons.arrow_back),
+//           ),
+//         title: const Text(
+//           'รายละเอียด',
+//           style: TextStyle(color: Colors.black)
+//         ),
+//       ),
+      
+//       body: SafeArea(
+//         child: ListView(
+//           children: <Widget>[
+//             const SizedBox(
+//               height: 50,
+//             ),
+//               Column(
+//                 crossAxisAlignment: CrossAxisAlignment.center,
+//                 children: <Widget>[
+//                   Image.asset(
+//                     "assets/images/joke.jpg",
+//                     width: 200.0,
+//                     height: 200.0,
+//                   ),
+//                 ],
+//               ),
+//             const SizedBox(
+//               height: 20,
+//             ),
+//             Column(
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: const <Widget>[
+//                 Text(
+//                   'ก๋วยจั๊บไก่',
+//                   style: TextStyle(
+//                     fontSize: 20.0,
+//                   ),
+//                 ),
+//                 // Text(
+//                 //   'น้ำต้มยำ+กุ้ง+หมึก+หอยแมลงภู่+ไก่สับ+ไข่ฟรีเลือกได้ 1 อย่าง',
+//                 //   style: TextStyle(
+//                 //     fontSize: 15.0,
+//                 //   ),
+//                 // ),
+//               ],
+//             ),
+//             const SizedBox(
+//               height: 20,
+//             ),
+//              Column(
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: const <Widget>[
+//                 Text(
+//                   'จำนวน',
+//                   style: TextStyle(
+//                     fontSize: 20.0,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             const SizedBox(
+//               height: 10,
+//             ),
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: <Widget>[
+//                 const Icon(
+//                   Icons.arrow_left,
+//                   size: 30,
+//                 ),
+//                 Text(
+//                   number.toString(),
+//                   style: const TextStyle(
+//                     fontSize: 20,
+//                   ),
+//                 ),
+//                 const Icon(
+//                   Icons.arrow_right,
+//                   size: 30,
+//                 )
+//               ],
+//             ),
+//             const SizedBox(
+//               height: 20,
+//             ),
+//             Column(
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: const <Widget>[
+//                 Text(
+//                   'เลือกไข่ฟรีได้ 1 อย่าง',
+//                   style: TextStyle(
+//                     fontSize: 20.0,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             const SizedBox(
+//               height: 20,
+//             ),
+//             const ListTile(
+//               title: Text('ไข่ลวก'),
+//               trailing: Checkbox(
+//                 onChanged: null,
+//                 value: false,
+//               ),
+//             ),
+//             const ListTile(
+//               title: Text('ไข่ต้ม'),
+//               trailing: Checkbox(
+//                 onChanged: null,
+//                 value: false,
+//               ),
+//             ),
+//             const ListTile(
+//               title: Text('ไข่เยี่ยวม้า'),
+//               trailing: Checkbox(
+//                 onChanged: null,
+//                 value: false,
+//               ),
+//             ),
+//             Column(
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: const <Widget>[
+//                 Text(
+//                   'เพิ่มไข่',
+//                   style: TextStyle(
+//                     fontSize: 20.0,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             Column(
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: const <Widget> [
+//                 ListTile(
+//                   title: Text('ไข่ลวก'),
+//                   trailing: Checkbox(
+//                     onChanged: null,
+//                     value: false,
+//                   ),
+//                 ),
+//                 ListTile(
+//                   title: Text('ไข่ต้ม'),
+//                   trailing: Checkbox(
+//                     onChanged: null,
+//                     value: false,
+//                   ),
+//                 ),
+//                 ListTile(
+//                   title: Text('ไข่เยี่ยวม้า'),
+//                   trailing: Checkbox(
+//                     onChanged: null,
+//                     value: false,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             Column(
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: const <Widget>[
+//                 Text(
+//                   'รายละเอียดเพิ่มเติม',
+//                   style: TextStyle(
+//                     fontSize: 20.0,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             const SizedBox(
+//               width: 100,
+//             ),
+//             Column(
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: const <Widget>[
+//                 TextField(
+//                   decoration: InputDecoration(
+//                     border: OutlineInputBorder(),
+//                     hintText: 'รายละเอียดเพิ่มเติม',
+//                   ),
+//                   // obscureText: true,
+//                   // decoration: InputDecoration(
+//                   //   border: OutlineInputBorder(),
+//                   //   labelText: 'รายละเอียดเพิ่มเติม',
+//                   // ),
+//                 ),
+//               ],
+//             ),
+//             Row(
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: [
+//                 Padding(
+//                   padding: const EdgeInsetsDirectional.fromSTEB(170, 20, 0, 0),
+//                   child: ElevatedButton(
+//                     child: const Text("ยืนยัน",style: TextStyle(
+//                       fontSize: 20,
+//                       fontFamily: 'SpartanMB-Black')
+//                     ),
+//                     onPressed: () {},
+//                   ),
+//                 ),
+//                 Padding(
+//                   padding: const EdgeInsetsDirectional.fromSTEB(20, 20, 0, 0),
+//                   child: ElevatedButton(
+//                     child: const Text("ยกเลิก",style: TextStyle(
+//                       fontSize: 20,
+//                       fontFamily: 'SpartanMB-Black') 
+//                     ), 
+//                     onPressed: () {},
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ],
+//         ),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: () {
+//           setState(() {
+//             number = number + 1;
+//           });
+//         }),
+//     );
+//   }
+
+//   showDrawer() {} 
+// }
+
+      
