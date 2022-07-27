@@ -2,9 +2,11 @@
 header('Content-Type: application/json');
 require('../http/client.php');
 
+// send user & pass
 $username = isset($_GET["username"]) ? $_GET["username"] : "";
 $password = isset($_GET["password"]) ? $_GET["password"] : "";
 
+// check have account?
 $query = "SELECT * FROM customer 
           WHERE Cus_email = '$username' 
           AND Cus_password = '$password'";

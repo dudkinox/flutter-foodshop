@@ -240,14 +240,21 @@ class _Home2State extends State<Home2> {
   UserAccountsDrawerHeader showHeadDrawer() {
     return UserAccountsDrawerHeader(
         accountName: widget.name == null
-            ? const Text('Guest')
-            : CircleAvatar(
-                radius: 30.0,
-                backgroundImage: NetworkImage("$host/${widget.avatar!}"),
-                backgroundColor: Colors.transparent,
+            ? Container(alignment: Alignment.center, child: const Text('Guest'))
+            : Container(
+                alignment: Alignment.center,
+                child: CircleAvatar(
+                  radius: 30.0,
+                  backgroundImage: NetworkImage("$host/${widget.avatar!}"),
+                  backgroundColor: Colors.transparent,
+                ),
               ),
         accountEmail: widget.name == null
-            ? const Text('Please login to shop food')
-            : Text("${widget.name}.  ${widget.lastName}"));
+            ? Container(
+                alignment: Alignment.center,
+                child: const Text('Please login to shop food'))
+            : Container(
+                alignment: Alignment.center,
+                child: Text("${widget.name}.  ${widget.lastName}")));
   }
 }
