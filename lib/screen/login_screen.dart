@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../services/customer_service.dart';
 import '../themes/themes.dart';
 import 'Register.dart';
+import 'home2.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,6 +15,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _rememberMe = false;
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
 
   Widget _buildUsernameTF() {
     return Column(
@@ -28,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: username,
             keyboardType: TextInputType.text,
             style: const TextStyle(
               color: Color.fromARGB(255, 0, 0, 0),
@@ -63,6 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: password,
             obscureText: true,
             style: const TextStyle(
               color: Color.fromARGB(255, 0, 0, 0),
@@ -119,7 +125,36 @@ class _LoginScreenState extends State<LoginScreen> {
       // ignore: deprecated_member_use
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () => print('Login Button Pressed'),
+        onPressed: () {
+          var res = loginService(username.text, password.text);
+          res.then((value) {
+            if (value.status == 'success') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Home2(),
+                ),
+              );
+            } else {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Login Failed'),
+                  content:
+                      const Text('Please check your username and password'),
+                  actions: <Widget>[
+                    FlatButton(
+                      child: const Text('OK'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                ),
+              );
+            }
+          });
+        },
         padding: const EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),

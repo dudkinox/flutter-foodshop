@@ -1,4 +1,4 @@
-import '../model/categoryFoodsModel.dart';
+import '../model/category_foods_model.dart';
 
 List<CategoryFoods> categoryFoodsEnum = <CategoryFoods>[
   CategoryFoods(
