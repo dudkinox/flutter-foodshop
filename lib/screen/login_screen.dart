@@ -140,7 +140,10 @@ class _LoginScreenState extends State<LoginScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Home2(),
+                  builder: (context) => Home2(
+                      name: value.cusName,
+                      lastName: value.cusSur,
+                      avatar: value.cusProfile),
                 ),
               );
             } else {

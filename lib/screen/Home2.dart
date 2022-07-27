@@ -1,5 +1,6 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:food/http/client.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../enum/category_foods_enum.dart';
@@ -8,7 +9,10 @@ import 'login_screen.dart';
 import 'register_screen.dart';
 
 class Home2 extends StatefulWidget {
-  const Home2({Key? key}) : super(key: key);
+  String? name;
+  String? lastName;
+  String? avatar;
+  Home2({Key? key, this.name, this.lastName, this.avatar}) : super(key: key);
 
   @override
   _Home2State createState() => _Home2State();
@@ -234,7 +238,16 @@ class _Home2State extends State<Home2> {
   }
 
   UserAccountsDrawerHeader showHeadDrawer() {
-    return const UserAccountsDrawerHeader(
-        accountName: Text('Guest'), accountEmail: Text('Please Login'));
+    return UserAccountsDrawerHeader(
+        accountName: widget.name == null
+            ? const Text('Guest')
+            : CircleAvatar(
+                radius: 30.0,
+                backgroundImage: NetworkImage("$host/${widget.avatar!}"),
+                backgroundColor: Colors.transparent,
+              ),
+        accountEmail: widget.name == null
+            ? const Text('Please login to shop food')
+            : Text("${widget.name}.  ${widget.lastName}"));
   }
 }

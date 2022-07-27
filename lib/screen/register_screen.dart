@@ -186,9 +186,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             isLoading = false;
                           });
                           if (status.status == 'success') {
-                            MaterialPageRoute route = MaterialPageRoute(
-                                builder: (value) => const Home2());
-                            // ignore: use_build_context_synchronously
+                            MaterialPageRoute route =
+                                MaterialPageRoute(builder: (value) => Home2());
                             Navigator.push(context, route);
                           } else {
                             showDialog(
