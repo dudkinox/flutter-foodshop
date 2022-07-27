@@ -4,8 +4,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../enum/category_foods_enum.dart';
 import '../enum/category_pages_enum.dart';
-import 'Login.dart';
 import 'Register.dart';
+import 'login_screen.dart';
 
 class Home2 extends StatefulWidget {
   const Home2({Key? key}) : super(key: key);
@@ -214,7 +214,7 @@ class _Home2State extends State<Home2> {
       onTap: () {
         Navigator.pop(context);
         MaterialPageRoute route =
-            MaterialPageRoute(builder: (value) => LoginScreen());
+            MaterialPageRoute(builder: (value) => const LoginScreen());
         Navigator.push(context, route);
       },
     );
