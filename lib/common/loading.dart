@@ -153,7 +153,7 @@ class Dot extends StatelessWidget {
   final double radius;
   final Color color;
 
-  Dot({this.radius, this.color});
+  Dot({required this.radius, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -172,9 +172,9 @@ class LoadingCube extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: Center(
+      child: const Center(
         child: SpinKitCubeGrid(
-          color: Colors.blue[300],
+          color: Colors.green,
           size: 50.0,
         ),
       ),
