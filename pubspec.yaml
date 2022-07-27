@@ -31,6 +31,7 @@ dependencies:
   convex_bottom_bar: ^3.0.0
   flutter_login_template: ^1.1.0
   flutter_spinkit: ^5.1.0
+  editable_image: ^1.1.0
 
 dev_dependencies:
   flutter_test:
