@@ -14,6 +14,13 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   var fileImage;
+  TextEditingController name = TextEditingController();
+  TextEditingController sur = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController confirmPassword = TextEditingController();
+  TextEditingController address = TextEditingController();
+  TextEditingController phone = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -69,90 +76,71 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                 ),
-                const Text("ชื่อ",
-                    style:
-                        TextStyle(fontSize: 20, fontFamily: 'SpartanMB-Black')),
                 TextFormField(
-                    // onSaved: (String name){
-                    //   profile.name=name;
-                    // },
-                    ),
-                SizedBox(
-                  height: 10,
+                  controller: name,
+                  decoration: const InputDecoration(
+                    labelText: 'ชื่อ',
+                  ),
                 ),
-                Text("นามสกุล",
-                    style:
-                        TextStyle(fontSize: 20, fontFamily: 'SaprtanMB-Black')),
                 TextFormField(
-                    // onSaved: (String surname){
-                    //   profile.surname=surname;
-                    // },
-                    ),
-                const SizedBox(
-                  height: 10,
+                  controller: sur,
+                  decoration: const InputDecoration(
+                    labelText: 'นามสกุล',
+                  ),
                 ),
-                const Text("ที่อยู่",
-                    style:
-                        TextStyle(fontSize: 20, fontFamily: 'SaprtanMB-Black')),
                 TextFormField(
-                    // onSaved: (String address){
-                    //   profile.address = address;
-                    // },
-                    ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text("เบอร์โทร",
-                    style:
-                        TextStyle(fontSize: 20, fontFamily: 'SaprtanMB-Black')),
-                TextFormField(
-                    // onSaved: (String phone){
-                    //   profile.phone=phone;
-                    // },
-                    ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text("อีเมล",
-                    style:
-                        TextStyle(fontSize: 20, fontFamily: 'SpartanMB-Black')),
-                TextFormField(
-                  validator: MultiValidator([
-                    RequiredValidator(errorText: "กรูณากรอกอีเมล"),
-                    EmailValidator(errorText: "อีเมลไม่ถูกต้อง")
-                  ]),
+                  controller: email,
                   keyboardType: TextInputType.emailAddress,
-                  //  onSaved: (String email){
-                  //     profile.email=email;
-                  //   },
+                  decoration: const InputDecoration(
+                    labelText: 'email',
+                  ),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text("รหัสผ่าน", style: TextStyle(fontSize: 20)),
                 TextFormField(
-                  validator: RequiredValidator(errorText: "กรุณากรอกรหัสผ่าน"),
+                  controller: password,
+                  keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
-                  // onSaved: (String password){
-                  //   profile.password=password;
-                  // },
+                  decoration: const InputDecoration(
+                    labelText: 'password',
+                  ),
+                ),
+                TextFormField(
+                  controller: confirmPassword,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: 'confirm password',
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: address,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 3,
+                  decoration: const InputDecoration(
+                    labelText: 'address',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                TextFormField(
+                  controller: phone,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(
+                    labelText: 'phone',
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 SizedBox(
                   height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
-                    child: Text("ลงทะเบียน",
+                    child: const Text("ลงทะเบียน",
                         style: TextStyle(
                             fontSize: 20, fontFamily: 'SpartanMB-Black')),
-                    onPressed: () {
-                      // if(FormKey.currentState.validate()){
-                      //   formKey.currentState.save();
-                      // print("name = ${profile.name} surname = ${profile.surname}
-                      // address = ${profile.address} phone = ${profile.phone}
-                      // email = ${profile.email} password = ${profile.password}");
-                      // formkey.currentState.reset()
-                      // }
-                    },
+                    onPressed: () {},
                   ),
                 ),
               ],
