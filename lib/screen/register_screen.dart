@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../model/status_model.dart';
+import '../services/customer_service.dart';
+import 'Home2.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
@@ -14,6 +18,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   var fileImage;
+  bool isLoading = false;
   TextEditingController name = TextEditingController();
   TextEditingController sur = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -140,7 +145,89 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: const Text("ลงทะเบียน",
                         style: TextStyle(
                             fontSize: 20, fontFamily: 'SpartanMB-Black')),
-                    onPressed: () {},
+                    onPressed: () async {
+                      if (name.text == '' ||
+                          sur.text == '' ||
+                          email.text == '' ||
+                          password.text == '' ||
+                          confirmPassword.text == '' ||
+                          address.text == '' ||
+                          phone.text == '') {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text('กรุณากรอกข้อมูลให้ครบถ้วน'),
+                              actions: <Widget>[
+                                FlatButton(
+                                  child: const Text('ตกลง'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else {
+                        if (password.text == confirmPassword.text) {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          StatusService status = await registerService(
+                              name.text,
+                              sur.text,
+                              email.text,
+                              password.text,
+                              address.text,
+                              phone.text,
+                              fileImage);
+                          setState(() {
+                            isLoading = false;
+                          });
+                          if (status.status == 'success') {
+                            MaterialPageRoute route = MaterialPageRoute(
+                                builder: (value) => const Home2());
+                            // ignore: use_build_context_synchronously
+                            Navigator.push(context, route);
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text("เกิดข้อผิดพลาดทาง Server"),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      child: const Text('ตกลง'),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('รหัสผ่านไม่ตรงกัน'),
+                                actions: [
+                                  FlatButton(
+                                    child: const Text('ตกลง'),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      }
+                    },
                   ),
                 ),
               ],
