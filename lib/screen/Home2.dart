@@ -1,13 +1,15 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../enum/categoryFoodsEnum.dart';
+import '../enum/category_foods_enum.dart';
+import '../enum/category_pages_enum.dart';
 import 'Login.dart';
 import 'Register.dart';
-// import 'package:form_field_validator/form_field_validator.dart';
-// import 'package:joke_sam_kai/model/Profile.dart';
 
 class Home2 extends StatefulWidget {
+  const Home2({Key? key}) : super(key: key);
+
   @override
   _Home2State createState() => _Home2State();
 }
@@ -43,7 +45,6 @@ class _Home2State extends State<Home2> {
 
   @override
   Widget build(BuildContext context) {
-    var child;
     return Scaffold(
       appBar: AppBar(
         title: const Text("โจ๊กสามไข่"),
@@ -179,88 +180,14 @@ class _Home2State extends State<Home2> {
               ),
             ),
           ),
-          Row(
-            children: const <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(53, 10, 0, 0),
-                child: Icon(
-                  Icons.home_filled,
-                  color: Colors.black,
-                  size: 35,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(85, 10, 0, 0),
-                child: Icon(
-                  Icons.shopping_cart,
-                  color: Colors.black,
-                  size: 35,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(80, 10, 0, 0),
-                child: Icon(
-                  Icons.watch_later_rounded,
-                  color: Colors.black,
-                  size: 35,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(85, 10, 0, 0),
-                child: Icon(
-                  Icons.contact_page,
-                  color: Colors.black,
-                  size: 35,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: const <Widget>[
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(45, 0, 0, 0),
-                child: Text(
-                  'หน้าหลัก',
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    fontFamily: 'SpartanMB-Black',
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(75, 0, 0, 0),
-                child: Text(
-                  'ตะกร้า',
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    fontFamily: 'SpartanMB-Black',
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(70, 0, 0, 0),
-                child: Text(
-                  'กิจกรรม',
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    fontFamily: 'SpartanMB-Black',
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(70, 0, 0, 0),
-                child: Text(
-                  'ติดต่อร้าน',
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    fontFamily: 'SpartanMB-Black',
-                  ),
-                ),
-              ),
-            ],
-          ),
         ],
+      ),
+      bottomNavigationBar: ConvexAppBar(
+        color: Colors.white,
+        backgroundColor: Colors.green,
+        items: categoryPagesEnum,
+        initialActiveIndex: 0,
+        onTap: (int i) => print('click index=$i'),
       ),
     );
   }
@@ -270,7 +197,7 @@ class _Home2State extends State<Home2> {
           children: <Widget>[
             showHeadDrawer(),
             signInMenu(),
-            RegisterMenu(),
+            registerMenu(),
             // Joke(),
             // Steak(),
             // AppetizerMenu(),
@@ -293,7 +220,7 @@ class _Home2State extends State<Home2> {
     );
   }
 
-  ListTile RegisterMenu() {
+  ListTile registerMenu() {
     return ListTile(
       leading: const Icon(Icons.app_registration),
       title: const Text('Register'),
@@ -307,7 +234,7 @@ class _Home2State extends State<Home2> {
   }
 
   UserAccountsDrawerHeader showHeadDrawer() {
-    return UserAccountsDrawerHeader(
+    return const UserAccountsDrawerHeader(
         accountName: Text('Guest'), accountEmail: Text('Please Login'));
   }
 }
