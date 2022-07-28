@@ -6,7 +6,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../common/logout.dart';
 import '../enum/category_foods_enum.dart';
 import '../enum/category_pages_enum.dart';
-import 'activity.dart';
+import 'activity_screen.dart';
 import 'cart_screen.dart';
 import 'contect.dart';
 import 'login_screen.dart';
@@ -71,7 +71,9 @@ class _Home2State extends State<Home2> {
           : indexPage == 4
               ? const StarScreen()
               : indexPage == 1
-                  ? Activity()
+                  ? Activity(
+                      cusId: widget.cusId ?? "",
+                    )
                   : indexPage == 2
                       ? CartScreen(
                           cusId: widget.cusId ?? "",

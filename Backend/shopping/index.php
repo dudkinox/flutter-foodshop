@@ -47,7 +47,9 @@ $query = "INSERT INTO orders(
             '" . $Food_id . "'
             )";
 
-$clearOrderCart = "DELETE FROM cash_order WHERE Cus_id = '" . $Cus_id . "'";
+$clearOrderCart = "UPDATE cash_order 
+                   SET `status`= 'progress' 
+                   WHERE cus_id = '" . $Cus_id . "'";
 
 $PayId = "P0001";
 $searchPayId = "SELECT Pay_id FROM pay ORDER BY pay.Pay_id DESC";
