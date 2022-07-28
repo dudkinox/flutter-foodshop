@@ -12,14 +12,16 @@ class MenuFood extends StatefulWidget {
   final String? name;
   final String? lastName;
   final String? avatar;
-  const MenuFood(
-      {Key? key,
-      required this.title,
-      required this.name,
-      required this.lastName,
-      required this.avatar,
-      required this.type})
-      : super(key: key);
+  final String? cusId;
+  const MenuFood({
+    Key? key,
+    required this.title,
+    required this.name,
+    required this.lastName,
+    required this.avatar,
+    required this.type,
+    this.cusId,
+  }) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -91,6 +93,10 @@ class _MenuFoodState extends State<MenuFood> {
                                               lastName: widget.lastName,
                                               avatar: widget.avatar,
                                               type: widget.type,
+                                              price: response
+                                                  .data[index].foodPrice
+                                                  .toString(),
+                                              cusId: widget.cusId ?? "",
                                             ),
                                           ),
                                         );

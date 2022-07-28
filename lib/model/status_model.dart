@@ -4,19 +4,19 @@
 
 import 'dart:convert';
 
-StatusService statusServiceFromJson(String str) =>
-    StatusService.fromJson(json.decode(str));
+StatusModel statusServiceFromJson(String str) =>
+    StatusModel.fromJson(json.decode(str));
 
-String statusServiceToJson(StatusService data) => json.encode(data.toJson());
+String statusServiceToJson(StatusModel data) => json.encode(data.toJson());
 
-class StatusService {
-  StatusService({
+class StatusModel {
+  StatusModel({
     required this.status,
   });
 
   String status;
 
-  factory StatusService.fromJson(Map<String, dynamic> json) => StatusService(
+  factory StatusModel.fromJson(Map<String, dynamic> json) => StatusModel(
         status: json["status"],
       );
 

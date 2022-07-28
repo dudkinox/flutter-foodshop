@@ -6,6 +6,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../common/logout.dart';
 import '../enum/category_foods_enum.dart';
 import '../enum/category_pages_enum.dart';
+import 'cart_screen.dart';
 import 'contect.dart';
 import 'login_screen.dart';
 import 'menu_food.dart';
@@ -16,7 +17,9 @@ class Home2 extends StatefulWidget {
   String? name;
   String? lastName;
   String? avatar;
-  Home2({Key? key, this.name, this.lastName, this.avatar}) : super(key: key);
+  String? cusId;
+  Home2({Key? key, this.name, this.lastName, this.avatar, this.cusId})
+      : super(key: key);
 
   @override
   _Home2State createState() => _Home2State();
@@ -39,7 +42,7 @@ class _Home2State extends State<Home2> {
         ),
       ),
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      child: Container(
+      child: SizedBox(
         height: 280,
         child: Center(
           child: Text(
@@ -66,169 +69,176 @@ class _Home2State extends State<Home2> {
           ? const ContactScreen()
           : indexPage == 4
               ? const StarScreen()
-              : indexPage == 5
-                  ? MenuFood(
-                      title: categoryFoodsEnum[indexType].label,
-                      type: indexType == 0
-                          ? "T0001"
-                          : indexType == 1
-                              ? "T0004"
-                              : indexType == 2
-                                  ? "T0003"
-                                  : "T0002",
-                      name: widget.name,
-                      lastName: widget.lastName,
-                      avatar: widget.avatar,
-                    )
-                  : ListView(
-                      children: <Widget>[
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+              : indexPage == 2
+                  ? const CartScreen()
+                  : indexPage == 5
+                      ? MenuFood(
+                          title: categoryFoodsEnum[indexType].label,
+                          type: indexType == 0
+                              ? "T0001"
+                              : indexType == 1
+                                  ? "T0004"
+                                  : indexType == 2
+                                      ? "T0003"
+                                      : "T0002",
+                          name: widget.name,
+                          lastName: widget.lastName,
+                          avatar: widget.avatar,
+                          cusId: widget.cusId,
+                        )
+                      : ListView(
                           children: <Widget>[
-                            const Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 10, 0, 0),
-                              child: Text(
-                                "เมนูแนะนำ",
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                ),
-                              ),
-                            ),
-                            Row(
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      50, 10, 0, 0),
-                                  child: Column(
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/joke.jpg",
-                                        width: 105.0,
-                                        height: 105.0,
-                                      ),
-                                    ],
+                                const Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20, 10, 0, 0),
+                                  child: Text(
+                                    "เมนูแนะนำ",
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                    ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      50, 10, 0, 0),
-                                  child: Column(
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/steak.jpg",
-                                        width: 105.0,
-                                        height: 105.0,
+                                Row(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              50, 10, 0, 0),
+                                      child: Column(
+                                        children: [
+                                          Image.asset(
+                                            "assets/images/joke.jpg",
+                                            width: 105.0,
+                                            height: 105.0,
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              50, 10, 0, 0),
+                                      child: Column(
+                                        children: [
+                                          Image.asset(
+                                            "assets/images/steak.jpg",
+                                            width: 105.0,
+                                            height: 105.0,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: const <Widget>[
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          35, 10, 0, 0),
+                                      child: Text(
+                                        'โจ๊กต้มยำทะเลหม้อดิน',
+                                        style: TextStyle(
+                                          fontSize: 15.0,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          50, 10, 0, 0),
+                                      child: Text(
+                                        'สเต็กไก่บาบีคิว',
+                                        style: TextStyle(
+                                          fontSize: 15.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                            Row(
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: const <Widget>[
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      35, 10, 0, 0),
+                                      20, 15, 0, 0),
                                   child: Text(
-                                    'โจ๊กต้มยำทะเลหม้อดิน',
+                                    "โปรโมชั่น",
                                     style: TextStyle(
-                                      fontSize: 15.0,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      50, 10, 0, 0),
-                                  child: Text(
-                                    'สเต็กไก่บาบีคิว',
-                                    style: TextStyle(
-                                      fontSize: 15.0,
+                                      fontSize: 20.0,
                                     ),
                                   ),
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const <Widget>[
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 15, 0, 0),
-                              child: Text(
-                                "โปรโมชั่น",
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  20, 10, 0, 0),
-                              child: Column(
-                                children: [
-                                  Image.asset(
-                                    "assets/images/promotion.jpg",
-                                    width: 370.0,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SafeArea(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                            Row(
                               children: <Widget>[
-                                const SizedBox(height: 16),
-                                SizedBox(
-                                  height: 200,
-                                  child: PageView.builder(
-                                    controller: controller,
-                                    itemCount: pages.length,
-                                    itemBuilder: (context, index) {
-                                      return InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            indexPage = 5;
-                                            indexType = index;
-                                          });
-                                        },
-                                        child: pages[index],
-                                      );
-                                    },
-                                  ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 10, bottom: 12),
-                                  child: Text(
-                                    'เมนู',
-                                    style: TextStyle(
-                                        color: Colors.black54, fontSize: 20),
-                                  ),
-                                ),
-                                SmoothPageIndicator(
-                                  controller: controller,
-                                  count: pages.length,
-                                  effect: const WormEffect(
-                                    dotHeight: 10,
-                                    dotWidth: 10,
-                                    type: WormType.thin,
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20, 10, 0, 0),
+                                  child: Column(
+                                    children: [
+                                      Image.asset(
+                                        "assets/images/promotion.jpg",
+                                        width: 370.0,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
-                          ),
+                            SafeArea(
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    const SizedBox(height: 16),
+                                    SizedBox(
+                                      height: 200,
+                                      child: PageView.builder(
+                                        controller: controller,
+                                        itemCount: pages.length,
+                                        itemBuilder: (context, index) {
+                                          return InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                indexPage = 5;
+                                                indexType = index;
+                                              });
+                                            },
+                                            child: pages[index],
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    const Padding(
+                                      padding:
+                                          EdgeInsets.only(top: 10, bottom: 12),
+                                      child: Text(
+                                        'เมนู',
+                                        style: TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 20),
+                                      ),
+                                    ),
+                                    SmoothPageIndicator(
+                                      controller: controller,
+                                      count: pages.length,
+                                      effect: const WormEffect(
+                                        dotHeight: 10,
+                                        dotWidth: 10,
+                                        type: WormType.thin,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
       bottomNavigationBar: ConvexAppBar(
         color: Colors.white,
         backgroundColor: Colors.green,

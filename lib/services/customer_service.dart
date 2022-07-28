@@ -18,7 +18,7 @@ Future<CustomerService> loginService(String username, String password) async {
   return CustomerService.fromJson(jsonDecode(response.body));
 }
 
-Future<StatusService> registerService(
+Future<StatusModel> registerService(
   String name,
   String sur,
   String email,
@@ -38,8 +38,8 @@ Future<StatusService> registerService(
     });
     request.send();
 
-    return StatusService(status: 'success');
+    return StatusModel(status: 'success');
   } catch (e) {
-    return StatusService(status: 'fail');
+    return StatusModel(status: 'fail');
   }
 }

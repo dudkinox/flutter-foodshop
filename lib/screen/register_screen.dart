@@ -174,7 +174,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           setState(() {
                             isLoading = true;
                           });
-                          StatusService status = await registerService(
+                          StatusModel status = await registerService(
                               name.text,
                               sur.text,
                               email.text,

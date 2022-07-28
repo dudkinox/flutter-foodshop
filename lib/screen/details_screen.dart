@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../common/image_type_food.dart';
+import '../model/status_model.dart';
+import '../services/shopping_service.dart';
+import 'login_screen.dart';
 import 'menu_food.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -9,6 +12,8 @@ class DetailsScreen extends StatefulWidget {
   String? lastName;
   String? avatar;
   String type;
+  String price;
+  String cusId;
   DetailsScreen({
     Key? key,
     required this.title,
@@ -16,6 +21,8 @@ class DetailsScreen extends StatefulWidget {
     required this.lastName,
     required this.avatar,
     required this.type,
+    required this.price,
+    required this.cusId,
   }) : super(key: key);
 
   @override
@@ -42,6 +49,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       lastName: widget.lastName,
                       avatar: widget.avatar,
                       type: widget.type,
+                      cusId: widget.cusId,
                     ));
             Navigator.push(context, route);
           },
@@ -65,10 +73,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
               height: 20,
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
                   widget.title,
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'ราคา ${widget.price} บาท',
                   style: const TextStyle(
                     fontSize: 20.0,
                   ),
@@ -174,23 +190,60 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     child: const Text("ยืนยัน",
                         style: TextStyle(
                             fontSize: 20, fontFamily: 'SpartanMB-Black')),
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text('เพิ่มรายการในตะกร้าแล้ว'),
-                            actions: <Widget>[
-                              FlatButton(
-                                child: const Text('ตกลง'),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
+                    onPressed: () async {
+                      if (widget.name == null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginScreen(),
+                          ),
+                        );
+                      } else {
+                        StatusModel status = await orderService(
+                          widget.cusId,
+                          number.toString(),
+                          widget.title,
+                          detail.text,
+                          widget.type,
+                          widget.price.toString(),
+                        );
+                        if (status.status == "success") {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('เพิ่มรายการในตะกร้าแล้ว'),
+                                actions: <Widget>[
+                                  FlatButton(
+                                    child: const Text('ตกลง'),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
                           );
-                        },
-                      );
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text(
+                                    'ไม่สามารถเพิ่มรายการในตะกร้าได้'),
+                                actions: <Widget>[
+                                  FlatButton(
+                                    child: const Text('ตกลง'),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      }
                     },
                   ),
                 ),
@@ -209,6 +262,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 lastName: widget.lastName,
                                 avatar: widget.avatar,
                                 type: widget.type,
+                                cusId: widget.cusId,
                               ));
                       Navigator.push(context, route);
                     },

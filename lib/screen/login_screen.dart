@@ -92,34 +92,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildRememberMeCheckbox() {
-    return SizedBox(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(
-                unselectedWidgetColor: const Color.fromARGB(255, 0, 0, 0)),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: const Color.fromARGB(255, 0, 0, 0),
-              activeColor: const Color.fromARGB(255, 13, 142, 41),
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value!;
-                });
-              },
-            ),
-          ),
-          Text(
-            'Remember me',
-            style: kLabelStyle,
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildLoginBtn() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
@@ -141,9 +113,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => Home2(
-                      name: value.cusName,
-                      lastName: value.cusSur,
-                      avatar: value.cusProfile),
+                    name: value.cusName,
+                    lastName: value.cusSur,
+                    avatar: value.cusProfile,
+                    cusId: value.cusId,
+                  ),
                 ),
               );
             } else {
@@ -207,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
       onTap: () {
         Navigator.pop(context);
         MaterialPageRoute route =
-            MaterialPageRoute(builder: (value) => RegisterScreen());
+            MaterialPageRoute(builder: (value) => const RegisterScreen());
         Navigator.push(context, route);
       },
       child: RichText(
@@ -292,7 +266,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             const SizedBox(
                               height: 30.0,
                             ),
-                            _buildRememberMeCheckbox(),
                             _buildLoginBtn(),
                             _buildSignInWithText(),
                             const SizedBox(
