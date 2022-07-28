@@ -3,6 +3,7 @@ import 'dart:convert';
 import '../http/client.dart';
 import 'package:http/http.dart' as http;
 
+import '../model/cart_model.dart';
 import '../model/status_model.dart';
 
 Future<StatusModel> shoppingService(
@@ -42,4 +43,16 @@ Future<StatusModel> orderService(
   );
 
   return StatusModel.fromJson(jsonDecode(response.body));
+}
+
+Future<CartListModel> cartService(String cusId) async {
+  final String url = "$host/cart/?cus_id=$cusId";
+  final response = await http.get(
+    Uri.parse(url),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+  );
+
+  return CartListModel.fromJson(jsonDecode(response.body));
 }

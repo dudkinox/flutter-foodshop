@@ -70,7 +70,9 @@ class _Home2State extends State<Home2> {
           : indexPage == 4
               ? const StarScreen()
               : indexPage == 2
-                  ? const CartScreen()
+                  ? CartScreen(
+                      cusId: widget.cusId ?? "",
+                    )
                   : indexPage == 5
                       ? MenuFood(
                           title: categoryFoodsEnum[indexType].label,
