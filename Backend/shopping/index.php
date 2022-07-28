@@ -13,6 +13,9 @@ $Order_total = isset($_GET["Order_total"]) ? $_GET["Order_total"] : "";
 $Order_details = isset($_GET["Order_details"]) ? $_GET["Order_details"] : "";
 $Cus_id = isset($_GET["Cus_id"]) ? $_GET["Cus_id"] : "";
 $Food_id = isset($_GET["Food_id"]) ? $_GET["Food_id"] : "";
+$fileName  =  $_FILES['image']['name'];
+$tempPath  =  $_FILES['image']['tmp_name'];
+$fileSize  =  $_FILES['image']['size'];
 
 $OrderId = "O0001";
 $searchOrderId = "SELECT Order_id FROM orders ORDER BY orders.Order_id DESC";

@@ -12,7 +12,7 @@ import 'contect.dart';
 import 'login_screen.dart';
 import 'menu_food.dart';
 import 'register_screen.dart';
-import 'star.dart';
+import 'star_screen.dart';
 
 class Home2 extends StatefulWidget {
   String? name;
@@ -75,6 +75,9 @@ class _Home2State extends State<Home2> {
                   : indexPage == 2
                       ? CartScreen(
                           cusId: widget.cusId ?? "",
+                          name: widget.name ?? "",
+                          lastName: widget.lastName ?? "",
+                          avatar: widget.avatar ?? "",
                         )
                       : indexPage == 5
                           ? MenuFood(

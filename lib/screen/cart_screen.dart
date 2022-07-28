@@ -7,11 +7,20 @@ import '../common/list_cart.dart';
 import '../model/cart_model.dart';
 import '../model/status_model.dart';
 import '../services/shopping_service.dart';
-import 'activity.dart';
+import 'Home2.dart';
 
 class CartScreen extends StatefulWidget {
   final String cusId;
-  const CartScreen({Key? key, required this.cusId}) : super(key: key);
+  final String name;
+  final String lastName;
+  final String avatar;
+  const CartScreen({
+    Key? key,
+    required this.cusId,
+    required this.name,
+    required this.lastName,
+    required this.avatar,
+  }) : super(key: key);
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -157,7 +166,12 @@ class _CartScreenState extends State<CartScreen> {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => Activity(),
+                                              builder: (context) => Home2(
+                                                name: widget.name,
+                                                lastName: widget.lastName,
+                                                avatar: widget.avatar,
+                                                cusId: widget.cusId,
+                                              ),
                                             ),
                                           );
                                         },

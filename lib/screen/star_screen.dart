@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'Home.dart';
-
 class StarScreen extends StatefulWidget {
   const StarScreen({Key? key}) : super(key: key);
 
