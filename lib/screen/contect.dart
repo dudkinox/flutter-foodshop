@@ -1,34 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import 'Home.dart';
+import 'facebook_page.dart';
 
-class Contect extends StatefulWidget {
+class ContactScreen extends StatefulWidget {
+  const ContactScreen({Key? key}) : super(key: key);
+
   @override
-  _ContectState createState() => _ContectState();
+  // ignore: library_private_types_in_public_api
+  _ContactScreenState createState() => _ContactScreenState();
 }
 
-class _ContectState extends State<Contect> {
-  // กลุ่มเมนู
-
+class _ContactScreenState extends State<ContactScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-            MaterialPageRoute route =
-                MaterialPageRoute(builder: (value) => HomePage());
-            Navigator.push(context, route);
-          },
-          icon: const Icon(Icons.arrow_back),
-        ),
-        title: const Text("ติดต่อร้าน"),
-      ),
       body: ListView(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(75, 10, 0, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
             child: Row(
               children: <Widget>[
                 Image.asset(
@@ -64,9 +54,23 @@ class _ContectState extends State<Contect> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(20, 10, 0, 0),
                 child: Row(
-                  children: const [
-                    Text(
-                      "เพจร้าน: โจ๊กสามไข่",
+                  children: [
+                    const Text(
+                      "เพจร้าน:",
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.facebook),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const FacebookPage(),
+                          ),
+                        );
+                      },
+                    ),
+                    const Text(
+                      " โจ๊กสามไข่",
                     ),
                   ],
                 ),
