@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food/http/client.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../common/logout.dart';
 import '../enum/category_foods_enum.dart';
 import '../enum/category_pages_enum.dart';
 import 'login_screen.dart';
@@ -200,13 +201,9 @@ class _Home2State extends State<Home2> {
         child: ListView(
           children: <Widget>[
             showHeadDrawer(),
-            signInMenu(),
-            registerMenu(),
-            // Joke(),
-            // Steak(),
-            // AppetizerMenu(),
-            // Water(),
-            // LogoutMenu(),
+            widget.name == null ? signInMenu() : Container(),
+            widget.name == null ? registerMenu() : Container(),
+            widget.name != null ? const LogoutWidget() : Container(),
           ],
         ),
       );
