@@ -13,22 +13,26 @@ class CartListModel {
   CartListModel({
     required this.cusId,
     required this.total,
+    required this.countOrder,
     required this.data,
   });
 
   String cusId;
   String total;
+  String countOrder;
   List<Datum> data;
 
   factory CartListModel.fromJson(Map<String, dynamic> json) => CartListModel(
         cusId: json["cus_id"],
         total: json["total"],
+        countOrder: json["count_order"],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "cus_id": cusId,
         "total": total,
+        "count_order": countOrder,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }

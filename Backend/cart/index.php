@@ -11,12 +11,15 @@ $queryTotal = "SELECT SUM(Price_order) as total FROM cash_order WHERE Cus_id = '
 $resultTotal = $conn->query($queryTotal);
 $rowTotal = $resultTotal->fetch_assoc();
 
-$queryCount = "SELECT COUNT(Cus_id) as count_order FROM cash_order WHERE cus_id = '" . $cusId . "'";
+$queryCount = "SELECT COUNT(Cus_id) as count_order, SUM(`Number`) as count_number  FROM cash_order WHERE cus_id = '" . $cusId . "'";
 $resultCount = $conn->query($queryCount);
 $rowCount = $resultCount->fetch_assoc();
 $i = 1;
 
-echo '{"cus_id": "' . $cusId . '","total": "' . $rowTotal["total"] . '", "data": [';
+echo '{"cus_id": "' . $cusId . '",
+       "total": "' . $rowTotal["total"] . '", 
+       "count_order": "' . $rowCount["count_number"] . '",
+       "data": [';
 
 while ($row = $result->fetch_assoc()) {
     echo '

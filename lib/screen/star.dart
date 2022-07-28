@@ -15,9 +15,6 @@ class _StarScreenState extends State<StarScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text('คะแนนร้าน', style: TextStyle(color: Colors.black)),
-        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
