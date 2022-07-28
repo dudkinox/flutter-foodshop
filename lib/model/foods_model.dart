@@ -4,13 +4,13 @@
 
 import 'dart:convert';
 
-FoodsService foodsServiceFromJson(String str) =>
-    FoodsService.fromJson(json.decode(str));
+FoodsModel foodsServiceFromJson(String str) =>
+    FoodsModel.fromJson(json.decode(str));
 
-String foodsServiceToJson(FoodsService data) => json.encode(data.toJson());
+String foodsServiceToJson(FoodsModel data) => json.encode(data.toJson());
 
-class FoodsService {
-  FoodsService({
+class FoodsModel {
+  FoodsModel({
     required this.type,
     required this.data,
   });
@@ -18,7 +18,7 @@ class FoodsService {
   String type;
   List<Datum> data;
 
-  factory FoodsService.fromJson(Map<String, dynamic> json) => FoodsService(
+  factory FoodsModel.fromJson(Map<String, dynamic> json) => FoodsModel(
         type: json["type"],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );

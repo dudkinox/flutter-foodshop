@@ -1,30 +1,49 @@
 import 'package:flutter/material.dart';
 
-import '../screen/steak.dart';
+import 'menu_food.dart';
 
-class Details12 extends StatefulWidget {
+class DetailsScreen extends StatefulWidget {
+  String title;
+  String? name;
+  String? lastName;
+  String? avatar;
+  String type;
+  DetailsScreen({
+    Key? key,
+    required this.title,
+    required this.name,
+    required this.lastName,
+    required this.avatar,
+    required this.type,
+  }) : super(key: key);
+
   @override
-  _Details12State createState() => _Details12State();
+  _DetailsScreenState createState() => _DetailsScreenState();
 }
 
-class _Details12State extends State<Details12> {
+class _DetailsScreenState extends State<DetailsScreen> {
   int number = 1;
-  bool CheckBoxValue = false;
 
-  // final formkey = GlobalKey<FormState>();
-  // Profile profile = Profile();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: IconButton(
+          color: Colors.black,
           onPressed: () {
             Navigator.pop(context);
-            MaterialPageRoute route =
-                MaterialPageRoute(builder: (value) => SteakMenu());
+            MaterialPageRoute route = MaterialPageRoute(
+                builder: (value) => MenuFood(
+                      title: widget.title,
+                      name: widget.name,
+                      lastName: widget.lastName,
+                      avatar: widget.avatar,
+                      type: widget.type,
+                    ));
             Navigator.push(context, route);
           },
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
         ),
         title: const Text('รายละเอียด', style: TextStyle(color: Colors.black)),
       ),
@@ -49,15 +68,15 @@ class _Details12State extends State<Details12> {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 Text(
-                  'สเต็กไก่กรอบ',
-                  style: TextStyle(
+                  widget.title,
+                  style: const TextStyle(
                     fontSize: 20.0,
                   ),
                 ),
                 Text(
-                  'ไก่กรอบ+ขนมปัง+เฟรนช์ฟรายส์+สลัด+ซอสบาบีคิว',
+                  'เนื้อ+เฟรนช์ฟรายส์+ขนมปัง+สลัด+ซอสพริกไทยดำ',
                   style: TextStyle(
                     fontSize: 15.0,
                   ),
@@ -125,11 +144,6 @@ class _Details12State extends State<Details12> {
                     border: OutlineInputBorder(),
                     hintText: 'รายละเอียดเพิ่มเติม',
                   ),
-                  // obscureText: true,
-                  // decoration: InputDecoration(
-                  //   border: OutlineInputBorder(),
-                  //   labelText: 'รายละเอียดเพิ่มเติม',
-                  // ),
                 ),
               ],
             ),
@@ -159,13 +173,11 @@ class _Details12State extends State<Details12> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            number = number + 1;
-          });
-        },
-      ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        setState(() {
+          number = number + 1;
+        });
+      }),
     );
   }
 }

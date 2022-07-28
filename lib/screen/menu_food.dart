@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../model/foods_model.dart';
 import '../services/foods_service.dart';
+import 'details_screen.dart';
 import 'home2.dart';
 
 class MenuFood extends StatefulWidget {
@@ -31,10 +32,12 @@ class _MenuFoodState extends State<MenuFood> {
       body: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          backgroundColor: Colors.teal,
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           appBar: AppBar(
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back,
+                  color: const Color.fromARGB(255, 0, 0, 0)),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -52,98 +55,65 @@ class _MenuFoodState extends State<MenuFood> {
               widget.title,
               style: const TextStyle(color: Colors.black),
             ),
-            backgroundColor: Colors.teal,
           ),
           body: Column(
             children: <Widget>[
-              FutureBuilder<FoodsService>(
+              FutureBuilder<FoodsModel>(
                 future: foodsService(widget.type),
                 builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
-                    FoodsService foodsService = snapshot.data;
-                    return ListView.builder(
-                      itemCount: foodsService.data.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: Image.asset(
-                            foodsService.type == "T0001"
-                                ? "assets/images/joke.jpg"
-                                : "assets/images/joke.jpg",
-                            width: 100,
-                            height: 100,
+                    FoodsModel response = snapshot.data;
+
+                    return Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.7,
+                          child: ListView.builder(
+                            itemCount: response.data.length,
+                            itemBuilder: (context, index) {
+                              return SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
+                                child: Card(
+                                  child: ListTile(
+                                    title: Text(response.data[index].foodName),
+                                    subtitle: Text(
+                                        "ราคา ${response.data[index].foodPrice} บาท"),
+                                    trailing: RawMaterialButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => DetailsScreen(
+                                              title:
+                                                  response.data[index].foodName,
+                                              name: widget.name,
+                                              lastName: widget.lastName,
+                                              avatar: widget.avatar,
+                                              type: widget.type,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      elevation: 2.0,
+                                      fillColor: Colors.white,
+                                      padding: const EdgeInsets.all(0.0),
+                                      shape: const CircleBorder(),
+                                      child: const Icon(
+                                        Icons.add,
+                                        size: 50,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                          title: Text(foodsService.data[index].foodName),
-                          subtitle: Text(
-                              "ราคา ${foodsService.data[index].foodPrice} บาท"),
-                          onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) =>
-                            //         FoodDetail(foodsService.foods[index]),
-                            //   ),
-                            // );
-                          },
-                        );
-                      },
+                        ),
+                      ],
                     );
-                    // return Row(
-                    //   children: <Widget>[
-                    //     Padding(
-                    //       padding: const EdgeInsetsDirectional.fromSTEB(
-                    //           15, 10, 0, 0),
-                    //       child: Image.asset(
-                    //         "assets/images/joke.jpg",
-                    //         width: 100,
-                    //         height: 100,
-                    //         fit: BoxFit.cover,
-                    //       ),
-                    //     ),
-                    //     Column(
-                    //       mainAxisSize: MainAxisSize.max,
-                    //       children: const [
-                    //         Padding(
-                    //           padding:
-                    //               EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                    //           child: Text(
-                    //             'โจ๊กทะเลต้มยำหม้อดิน',
-                    //             style: TextStyle(
-                    //               fontSize: 20.0,
-                    //               fontFamily: 'SpartanMB-Black',
-                    //             ),
-                    //           ),
-                    //         ),
-                    //         Padding(
-                    //           padding:
-                    //               EdgeInsetsDirectional.fromSTEB(20, 10, 0, 0),
-                    //           child: Text(
-                    //             'ราคา 59 บาท',
-                    //             style: TextStyle(
-                    //               fontSize: 20.0,
-                    //               fontFamily: 'SpartanMB-Black',
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //     Column(
-                    //       mainAxisSize: MainAxisSize.max,
-                    //       children: const [
-                    //         Padding(
-                    //           padding:
-                    //               EdgeInsetsDirectional.fromSTEB(25, 10, 10, 0),
-                    //           child: Icon(
-                    //             Icons.add_circle_outline,
-                    //             color: Colors.black,
-                    //             size: 35,
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ],
-                    // );
                   } else {
-                    return Container();
+                    return const LinearProgressIndicator();
                   }
                 },
               ),
