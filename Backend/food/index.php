@@ -10,6 +10,11 @@ $query = "SELECT * FROM food WHERE Type_food_id = '" . $type . "'";
 // send query -> phpmyadmin
 $result = $conn->query($query);
 
+$queryCount = "SELECT COUNT(Type_food_id) as count_food FROM food WHERE Type_food_id = '" . $type . "'";
+$resultCount = $conn->query($queryCount);
+$rowCount = $resultCount->fetch_assoc();
+$i = 1;
+
 echo '{
         "type": "' . $type . '",
         "data": [';
@@ -18,12 +23,15 @@ while ($row = $result->fetch_assoc()) {
             {
                 "food_id": "' . $row["Food_id"] . '",
                 "food_name": "' . $row["Food_name"] . '",
-                "food_details": "' . $row["Food_details"] . '",
                 "food_price": ' . $row["Food_price"] . ',
                 "food_img": "' . $row["Food_img"] . '",
                 "food_status": "' . $row["Food_status"] . '"
-            },
+            }
     ';
+    if ($rowCount["count_food"] != $i) {
+        echo ',';
+    }
+    $i++;
 }
 echo '      ]
       }';

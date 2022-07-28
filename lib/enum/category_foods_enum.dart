@@ -10,7 +10,7 @@ List<CategoryFoods> categoryFoodsEnum = <CategoryFoods>[
     image: 'assets/images/steak.jpg',
   ),
   CategoryFoods(
-    label: 'อาหารต้ม',
+    label: 'เครื่องดื่ม',
     image: 'assets/images/water.jpg',
   ),
   CategoryFoods(
