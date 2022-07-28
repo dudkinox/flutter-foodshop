@@ -2,28 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'Home.dart';
-// import 'package:google_fonts/google_fonts.dart';
 
-class Star extends StatefulWidget {
+class StarScreen extends StatefulWidget {
+  const StarScreen({Key? key}) : super(key: key);
+
   @override
-  _StarState createState() => _StarState();
+  _StarScreenState createState() => _StarScreenState();
 }
 
-class _StarState extends State<Star> {
+class _StarScreenState extends State<StarScreen> {
   double rating = 0;
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-              MaterialPageRoute route =
-                  MaterialPageRoute(builder: (value) => HomePage());
-              Navigator.push(context, route);
-            },
-            icon: Icon(Icons.arrow_back),
-          ),
           title: const Text('คะแนนร้าน', style: TextStyle(color: Colors.black)),
         ),
         body: Center(
@@ -32,7 +24,7 @@ class _StarState extends State<Star> {
             children: [
               Text(
                 'Rating: $rating',
-                style: TextStyle(fontSize: 40),
+                style: const TextStyle(fontSize: 40),
               ),
               const SizedBox(
                 height: 32,
@@ -41,7 +33,7 @@ class _StarState extends State<Star> {
               RatingBar.builder(
                 maxRating: 1,
                 itemSize: 46,
-                itemPadding: EdgeInsets.symmetric(horizontal: 4),
+                itemPadding: const EdgeInsets.symmetric(horizontal: 4),
                 itemBuilder: (context, _) => const Icon(
                   Icons.star,
                   color: Colors.amber,

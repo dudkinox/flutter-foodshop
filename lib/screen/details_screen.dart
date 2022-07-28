@@ -174,7 +174,24 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     child: const Text("ยืนยัน",
                         style: TextStyle(
                             fontSize: 20, fontFamily: 'SpartanMB-Black')),
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text('เพิ่มรายการในตะกร้าแล้ว'),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: const Text('ตกลง'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                   ),
                 ),
                 Padding(
