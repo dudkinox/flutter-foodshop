@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../common/image_type_food.dart';
 import 'menu_food.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -23,6 +24,7 @@ class DetailsScreen extends StatefulWidget {
 
 class _DetailsScreenState extends State<DetailsScreen> {
   int number = 1;
+  TextEditingController detail = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +58,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Image.asset(
-                  "assets/images/steak.jpg",
-                  width: 200.0,
-                  height: 200.0,
-                ),
+                ImageFoodType(type: widget.type, width: 200, height: 200),
               ],
             ),
             const SizedBox(
@@ -73,12 +71,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   widget.title,
                   style: const TextStyle(
                     fontSize: 20.0,
-                  ),
-                ),
-                Text(
-                  'เนื้อ+เฟรนช์ฟรายส์+ขนมปัง+สลัด+ซอสพริกไทยดำ',
-                  style: TextStyle(
-                    fontSize: 15.0,
                   ),
                 ),
               ],
@@ -103,20 +95,42 @@ class _DetailsScreenState extends State<DetailsScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Icon(
-                  Icons.arrow_left,
-                  size: 30,
+                RawMaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      if (number > 0) {
+                        number = number - 1;
+                      }
+                    });
+                  },
+                  fillColor: Colors.white,
+                  padding: const EdgeInsets.all(10.0),
+                  shape: const CircleBorder(),
+                  child: const Icon(
+                    Icons.arrow_left,
+                    size: 30,
+                  ),
                 ),
                 Text(
                   number.toString(),
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 30,
                   ),
                 ),
-                const Icon(
-                  Icons.arrow_right,
-                  size: 30,
-                )
+                RawMaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      number = number + 1;
+                    });
+                  },
+                  fillColor: Colors.white,
+                  padding: const EdgeInsets.all(10.0),
+                  shape: const CircleBorder(),
+                  child: const Icon(
+                    Icons.arrow_right,
+                    size: 30,
+                  ),
+                ),
               ],
             ),
             const SizedBox(
@@ -136,11 +150,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
             const SizedBox(
               width: 100,
             ),
+            const SizedBox(
+              height: 20,
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 TextField(
-                  decoration: InputDecoration(
+                  controller: detail,
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'รายละเอียดเพิ่มเติม',
                   ),
@@ -151,7 +169,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(170, 20, 0, 0),
+                  padding: const EdgeInsets.only(left: 100, top: 10),
                   child: ElevatedButton(
                     child: const Text("ยืนยัน",
                         style: TextStyle(
@@ -160,12 +178,23 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20, 20, 0, 0),
+                  padding: const EdgeInsets.only(left: 40, top: 10),
                   child: ElevatedButton(
                     child: const Text("ยกเลิก",
                         style: TextStyle(
                             fontSize: 20, fontFamily: 'SpartanMB-Black')),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                      MaterialPageRoute route = MaterialPageRoute(
+                          builder: (value) => MenuFood(
+                                title: widget.title,
+                                name: widget.name,
+                                lastName: widget.lastName,
+                                avatar: widget.avatar,
+                                type: widget.type,
+                              ));
+                      Navigator.push(context, route);
+                    },
                   ),
                 ),
               ],
@@ -173,11 +202,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        setState(() {
-          number = number + 1;
-        });
-      }),
     );
   }
 }

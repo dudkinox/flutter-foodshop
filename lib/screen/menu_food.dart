@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../common/image_type_food.dart';
 import '../model/foods_model.dart';
 import '../services/foods_service.dart';
 import 'details_screen.dart';
@@ -72,13 +73,12 @@ class _MenuFoodState extends State<MenuFood> {
                             itemCount: response.data.length,
                             itemBuilder: (context, index) {
                               return SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.2,
                                 child: Card(
                                   child: ListTile(
                                     title: Text(response.data[index].foodName),
                                     subtitle: Text(
                                         "ราคา ${response.data[index].foodPrice} บาท"),
+                                    leading: ImageFoodType(type: response.type),
                                     trailing: RawMaterialButton(
                                       onPressed: () {
                                         Navigator.push(
