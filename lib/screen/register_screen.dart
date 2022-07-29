@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../model/status_model.dart';
 import '../services/customer_service.dart';
-import 'Home2.dart';
+import 'home_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);

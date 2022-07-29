@@ -7,7 +7,7 @@ import '../common/list_cart.dart';
 import '../model/cart_model.dart';
 import '../model/status_model.dart';
 import '../services/shopping_service.dart';
-import 'Home2.dart';
+import 'home_screen.dart';
 
 class CartScreen extends StatefulWidget {
   final String cusId;

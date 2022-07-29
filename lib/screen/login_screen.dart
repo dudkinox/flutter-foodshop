@@ -5,7 +5,7 @@ import '../common/loading.dart';
 import '../services/customer_service.dart';
 import '../themes/themes.dart';
 import 'register_screen.dart';
-import 'home2.dart';
+import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

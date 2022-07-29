@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screen/Home2.dart';
+import '../screen/home_screen.dart';
 
 class LogoutWidget extends StatelessWidget {
   const LogoutWidget({Key? key}) : super(key: key);

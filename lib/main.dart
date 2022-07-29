@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'screen/home2.dart';
+import 'screen/home_screen.dart';
 
 void main() {
   runApp(const MyApp());

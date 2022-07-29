@@ -4,7 +4,7 @@ import '../common/image_type_food.dart';
 import '../model/foods_model.dart';
 import '../services/foods_service.dart';
 import 'details_screen.dart';
-import 'home2.dart';
+import 'home_screen.dart';
 
 class MenuFood extends StatefulWidget {
   final String title;
